@@ -1,0 +1,6 @@
+.banner{
+    background-image: url("../src/assets/Banner.jpeg");
+    background-repeat: no-repeat;
+    height: 1200px;
+    object-fit:cover;
+}
