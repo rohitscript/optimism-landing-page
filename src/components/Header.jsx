@@ -17,11 +17,12 @@ const Header = () => {
   const handleToggle = () => {
     setToggleOpen(!toggleOpen);
   };
+
   return (
     <>
-      <div className="flex justify-between  items-center mx-4 p-2 bg-white">
+      <div className="flex justify-between items-center mx-4 p-2 bg-white">
         <div className="cursor-pointer">
-          <img className="" src={logo} alt="" />
+          <img className="" src={logo} alt="Logo" />
         </div>
 
         <ul className="font-bold text-neutral-600 lg:flex gap-1 hidden">
@@ -35,41 +36,28 @@ const Header = () => {
           <Button text="Join" />
         </div>
 
-        {toggleOpen ? (
-          <div
-            className="rounded-full border p-2 border-neutral-400 lg:hidden cursor-pointer"
-            onClick={handleToggle}
-          >
-            <Menu height={24} />
-          </div>
-        ) : (
-          <div
-            className="rounded-full border p-2 border-neutral-400 lg:hidden cursor-pointer"
-            onClick={handleToggle}
-          >
-            <X height={24} />
-          </div>
-        )}
+        <div
+          className="rounded-full border p-2 border-neutral-400 lg:hidden cursor-pointer"
+          onClick={handleToggle}
+        >
+          {toggleOpen ? <X height={24} /> : <Menu height={24} />}
+        </div>
       </div>
 
-      {!toggleOpen && (
-        <div className="bg-white shadow-lg  h-screen w-2/3 flex absolute right-0 lg:hidden p-2 transition-all dur">
-          <ul className="font-semibold text-neutral-800 lg:flex gap-1 py-4 w-full mx-4">
+      {toggleOpen && (
+        <div className="bg-white shadow-lg h-screen w-2/3 flex absolute right-0 lg:hidden p-2 transition-all duration-200">
+          <ul className="font-semibold text-neutral-800 gap-1 py-4 w-full mx-4">
             {navLinks.map((link, index) => (
-              <div className="flex items-center border-b border-b-neutral-200">
+              <div className="flex items-center border-b border-b-neutral-200" key={index}>
                 <Menu color="red" />
-                <li
-                  className=" list-none p-3 "
-                  key={index}
-                >
-                  {link.name}
-                </li>
+                <li className="list-none p-3">{link.name}</li>
               </div>
             ))}
-            <div className="pt-4 lg:hidden p">
-              <Button text="Join" />
-            </div>
+            <div className="pt-4 lg:hidden ">
+            <Button text="Join" />
+          </div>
           </ul>
+          
         </div>
       )}
     </>
